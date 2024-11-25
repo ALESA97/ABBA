@@ -16,9 +16,11 @@ public class ABBA {
             // Eliminar acentos y convertir a mayusculas
             text = Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toUpperCase();
 
-            // Sustituir i por comas
-            text = text.replace(" I ", ", ");
-
+            // Sustituir ultima i por comas
+            int ultimaI = text.lastIndexOf(" I ");
+            if (ultimaI != -1) {
+                text = text.substring(0, ultimaI) + "," + text.substring(ultimaI + 3);
+            }
             // Separar nombres por comas
             String[] noms = text.split(",\\s*");
 
